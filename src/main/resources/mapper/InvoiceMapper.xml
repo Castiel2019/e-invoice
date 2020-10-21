@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.InvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Invoice">
+    <id column="invoice_id" jdbcType="INTEGER" property="invoiceId" />
+    <result column="bill_no" jdbcType="VARCHAR" property="billNo" />
+    <result column="buyer_name" jdbcType="VARCHAR" property="buyerName" />
+    <result column="buyer_tax_no" jdbcType="VARCHAR" property="buyerTaxNo" />
+    <result column="buyer_tel" jdbcType="VARCHAR" property="buyerTel" />
+    <result column="buyer_address" jdbcType="VARCHAR" property="buyerAddress" />
+    <result column="buyer_account" jdbcType="VARCHAR" property="buyerAccount" />
+    <result column="buyer_email" jdbcType="VARCHAR" property="buyerEmail" />
+    <result column="buyer_phone" jdbcType="VARCHAR" property="buyerPhone" />
+    <result column="head_type" jdbcType="INTEGER" property="headType" />
+    <result column="invoice_type" jdbcType="INTEGER" property="invoiceType" />
+    <result column="invoice_kind" jdbcType="VARCHAR" property="invoiceKind" />
+    <result column="invoice_code" jdbcType="VARCHAR" property="invoiceCode" />
+    <result column="invoice_num" jdbcType="VARCHAR" property="invoiceNum" />
+    <result column="old_invoice_code" jdbcType="VARCHAR" property="oldInvoiceCode" />
+    <result column="old_invoice_num" jdbcType="VARCHAR" property="oldInvoiceNum" />
+    <result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+    <result column="seller_tax_no" jdbcType="VARCHAR" property="sellerTaxNo" />
+    <result column="seller_tel" jdbcType="VARCHAR" property="sellerTel" />
+    <result column="seller_address" jdbcType="VARCHAR" property="sellerAddress" />
+    <result column="seller_account" jdbcType="VARCHAR" property="sellerAccount" />
+    <result column="tax_amount" jdbcType="DECIMAL" property="taxAmount" />
+    <result column="tax_excluded_amount" jdbcType="DECIMAL" property="taxExcludedAmount" />
+    <result column="tax_included_amount" jdbcType="DECIMAL" property="taxIncludedAmount" />
+    <result column="product_oil_flag" jdbcType="BOOLEAN" property="productOilFlag" />
+    <result column="list_flag" jdbcType="BOOLEAN" property="listFlag" />
+    <result column="list_name" jdbcType="VARCHAR" property="listName" />
+    <result column="serial_no" jdbcType="VARCHAR" property="serialNo" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="apply_remark" jdbcType="VARCHAR" property="applyRemark" />
+    <result column="apply_flag" jdbcType="BOOLEAN" property="applyFlag" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status_msg" jdbcType="VARCHAR" property="statusMsg" />
+    <result column="fail_cause" jdbcType="VARCHAR" property="failCause" />
+    <result column="cipher_text" jdbcType="VARCHAR" property="cipherText" />
+    <result column="pdf_url" jdbcType="VARCHAR" property="pdfUrl" />
+    <result column="picture_url" jdbcType="VARCHAR" property="pictureUrl" />
+    <result column="paper_pdf_url" jdbcType="VARCHAR" property="paperPdfUrl" />
+    <result column="ofd_url" jdbcType="VARCHAR" property="ofdUrl" />
+    <result column="img_urls" jdbcType="VARCHAR" property="imgUrls" />
+    <result column="invoice_time" jdbcType="TIMESTAMP" property="invoiceTime" />
+    <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+    <result column="clerk_id" jdbcType="VARCHAR" property="clerkId" />
+    <result column="clerk" jdbcType="VARCHAR" property="clerk" />
+    <result column="payee" jdbcType="VARCHAR" property="payee" />
+    <result column="checker" jdbcType="VARCHAR" property="checker" />
+    <result column="check_code" jdbcType="VARCHAR" property="checkCode" />
+    <result column="qr_code" jdbcType="VARCHAR" property="qrCode" />
+    <result column="machine_code" jdbcType="VARCHAR" property="machineCode" />
+    <result column="push_mode" jdbcType="VARCHAR" property="pushMode" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="extension_num" jdbcType="VARCHAR" property="extensionNum" />
+    <result column="terminal_num" jdbcType="VARCHAR" property="terminalNum" />
+    <result column="proxy_invoice_flag" jdbcType="BOOLEAN" property="proxyInvoiceFlag" />
+    <result column="del" jdbcType="BOOLEAN" property="del" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="INTEGER" property="createUser" />
+    <result column="update_user" jdbcType="INTEGER" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_user" jdbcType="INTEGER" property="deleteUser" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    invoice_id, bill_no, buyer_name, buyer_tax_no, buyer_tel, buyer_address, buyer_account, 
+    buyer_email, buyer_phone, head_type, invoice_type, invoice_kind, invoice_code, invoice_num, 
+    old_invoice_code, old_invoice_num, seller_name, seller_tax_no, seller_tel, seller_address, 
+    seller_account, tax_amount, tax_excluded_amount, tax_included_amount, product_oil_flag, 
+    list_flag, list_name, serial_no, order_no, apply_remark, apply_flag, order_date, 
+    `status`, status_msg, fail_cause, cipher_text, pdf_url, picture_url, paper_pdf_url, 
+    ofd_url, img_urls, invoice_time, dept_id, clerk_id, clerk, payee, checker, check_code, 
+    qr_code, machine_code, push_mode, remark, extension_num, terminal_num, proxy_invoice_flag, 
+    del, create_time, create_user, update_user, update_time, delete_user, delete_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="invoice_id" keyProperty="invoiceId" parameterType="com.demo.entity.Invoice" useGeneratedKeys="true">
+    insert into invoice (bill_no, buyer_name, buyer_tax_no, 
+      buyer_tel, buyer_address, buyer_account, 
+      buyer_email, buyer_phone, head_type, 
+      invoice_type, invoice_kind, invoice_code, 
+      invoice_num, old_invoice_code, old_invoice_num, 
+      seller_name, seller_tax_no, seller_tel, 
+      seller_address, seller_account, tax_amount, 
+      tax_excluded_amount, tax_included_amount, product_oil_flag, 
+      list_flag, list_name, serial_no, 
+      order_no, apply_remark, apply_flag, 
+      order_date, `status`, status_msg, 
+      fail_cause, cipher_text, pdf_url, 
+      picture_url, paper_pdf_url, ofd_url, 
+      img_urls, invoice_time, dept_id, 
+      clerk_id, clerk, payee, 
+      checker, check_code, qr_code, 
+      machine_code, push_mode, remark, 
+      extension_num, terminal_num, proxy_invoice_flag, 
+      del, create_time, create_user, 
+      update_user, update_time, delete_user, 
+      delete_time)
+    values (#{billNo,jdbcType=VARCHAR}, #{buyerName,jdbcType=VARCHAR}, #{buyerTaxNo,jdbcType=VARCHAR}, 
+      #{buyerTel,jdbcType=VARCHAR}, #{buyerAddress,jdbcType=VARCHAR}, #{buyerAccount,jdbcType=VARCHAR}, 
+      #{buyerEmail,jdbcType=VARCHAR}, #{buyerPhone,jdbcType=VARCHAR}, #{headType,jdbcType=INTEGER}, 
+      #{invoiceType,jdbcType=INTEGER}, #{invoiceKind,jdbcType=VARCHAR}, #{invoiceCode,jdbcType=VARCHAR}, 
+      #{invoiceNum,jdbcType=VARCHAR}, #{oldInvoiceCode,jdbcType=VARCHAR}, #{oldInvoiceNum,jdbcType=VARCHAR}, 
+      #{sellerName,jdbcType=VARCHAR}, #{sellerTaxNo,jdbcType=VARCHAR}, #{sellerTel,jdbcType=VARCHAR}, 
+      #{sellerAddress,jdbcType=VARCHAR}, #{sellerAccount,jdbcType=VARCHAR}, #{taxAmount,jdbcType=DECIMAL}, 
+      #{taxExcludedAmount,jdbcType=DECIMAL}, #{taxIncludedAmount,jdbcType=DECIMAL}, #{productOilFlag,jdbcType=BOOLEAN}, 
+      #{listFlag,jdbcType=BOOLEAN}, #{listName,jdbcType=VARCHAR}, #{serialNo,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=VARCHAR}, #{applyRemark,jdbcType=VARCHAR}, #{applyFlag,jdbcType=BOOLEAN}, 
+      #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{statusMsg,jdbcType=VARCHAR}, 
+      #{failCause,jdbcType=VARCHAR}, #{cipherText,jdbcType=VARCHAR}, #{pdfUrl,jdbcType=VARCHAR}, 
+      #{pictureUrl,jdbcType=VARCHAR}, #{paperPdfUrl,jdbcType=VARCHAR}, #{ofdUrl,jdbcType=VARCHAR}, 
+      #{imgUrls,jdbcType=VARCHAR}, #{invoiceTime,jdbcType=TIMESTAMP}, #{deptId,jdbcType=VARCHAR}, 
+      #{clerkId,jdbcType=VARCHAR}, #{clerk,jdbcType=VARCHAR}, #{payee,jdbcType=VARCHAR}, 
+      #{checker,jdbcType=VARCHAR}, #{checkCode,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR}, 
+      #{machineCode,jdbcType=VARCHAR}, #{pushMode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{extensionNum,jdbcType=VARCHAR}, #{terminalNum,jdbcType=VARCHAR}, #{proxyInvoiceFlag,jdbcType=BOOLEAN}, 
+      #{del,jdbcType=BOOLEAN}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, 
+      #{updateUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=INTEGER}, 
+      #{deleteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="invoice_id" keyProperty="invoiceId" parameterType="com.demo.entity.Invoice" useGeneratedKeys="true">
+    insert into invoice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billNo != null">
+        bill_no,
+      </if>
+      <if test="buyerName != null">
+        buyer_name,
+      </if>
+      <if test="buyerTaxNo != null">
+        buyer_tax_no,
+      </if>
+      <if test="buyerTel != null">
+        buyer_tel,
+      </if>
+      <if test="buyerAddress != null">
+        buyer_address,
+      </if>
+      <if test="buyerAccount != null">
+        buyer_account,
+      </if>
+      <if test="buyerEmail != null">
+        buyer_email,
+      </if>
+      <if test="buyerPhone != null">
+        buyer_phone,
+      </if>
+      <if test="headType != null">
+        head_type,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="invoiceKind != null">
+        invoice_kind,
+      </if>
+      <if test="invoiceCode != null">
+        invoice_code,
+      </if>
+      <if test="invoiceNum != null">
+        invoice_num,
+      </if>
+      <if test="oldInvoiceCode != null">
+        old_invoice_code,
+      </if>
+      <if test="oldInvoiceNum != null">
+        old_invoice_num,
+      </if>
+      <if test="sellerName != null">
+        seller_name,
+      </if>
+      <if test="sellerTaxNo != null">
+        seller_tax_no,
+      </if>
+      <if test="sellerTel != null">
+        seller_tel,
+      </if>
+      <if test="sellerAddress != null">
+        seller_address,
+      </if>
+      <if test="sellerAccount != null">
+        seller_account,
+      </if>
+      <if test="taxAmount != null">
+        tax_amount,
+      </if>
+      <if test="taxExcludedAmount != null">
+        tax_excluded_amount,
+      </if>
+      <if test="taxIncludedAmount != null">
+        tax_included_amount,
+      </if>
+      <if test="productOilFlag != null">
+        product_oil_flag,
+      </if>
+      <if test="listFlag != null">
+        list_flag,
+      </if>
+      <if test="listName != null">
+        list_name,
+      </if>
+      <if test="serialNo != null">
+        serial_no,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="applyRemark != null">
+        apply_remark,
+      </if>
+      <if test="applyFlag != null">
+        apply_flag,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="statusMsg != null">
+        status_msg,
+      </if>
+      <if test="failCause != null">
+        fail_cause,
+      </if>
+      <if test="cipherText != null">
+        cipher_text,
+      </if>
+      <if test="pdfUrl != null">
+        pdf_url,
+      </if>
+      <if test="pictureUrl != null">
+        picture_url,
+      </if>
+      <if test="paperPdfUrl != null">
+        paper_pdf_url,
+      </if>
+      <if test="ofdUrl != null">
+        ofd_url,
+      </if>
+      <if test="imgUrls != null">
+        img_urls,
+      </if>
+      <if test="invoiceTime != null">
+        invoice_time,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="clerkId != null">
+        clerk_id,
+      </if>
+      <if test="clerk != null">
+        clerk,
+      </if>
+      <if test="payee != null">
+        payee,
+      </if>
+      <if test="checker != null">
+        checker,
+      </if>
+      <if test="checkCode != null">
+        check_code,
+      </if>
+      <if test="qrCode != null">
+        qr_code,
+      </if>
+      <if test="machineCode != null">
+        machine_code,
+      </if>
+      <if test="pushMode != null">
+        push_mode,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="extensionNum != null">
+        extension_num,
+      </if>
+      <if test="terminalNum != null">
+        terminal_num,
+      </if>
+      <if test="proxyInvoiceFlag != null">
+        proxy_invoice_flag,
+      </if>
+      <if test="del != null">
+        del,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteUser != null">
+        delete_user,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billNo != null">
+        #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null">
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerTaxNo != null">
+        #{buyerTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerTel != null">
+        #{buyerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null">
+        #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAccount != null">
+        #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null">
+        #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null">
+        #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="headType != null">
+        #{headType,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceKind != null">
+        #{invoiceKind,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null">
+        #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNum != null">
+        #{invoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oldInvoiceCode != null">
+        #{oldInvoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oldInvoiceNum != null">
+        #{oldInvoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null">
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerTaxNo != null">
+        #{sellerTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerTel != null">
+        #{sellerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAddress != null">
+        #{sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAccount != null">
+        #{sellerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="taxAmount != null">
+        #{taxAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxExcludedAmount != null">
+        #{taxExcludedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxIncludedAmount != null">
+        #{taxIncludedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productOilFlag != null">
+        #{productOilFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="listFlag != null">
+        #{listFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="listName != null">
+        #{listName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null">
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyRemark != null">
+        #{applyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyFlag != null">
+        #{applyFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusMsg != null">
+        #{statusMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="failCause != null">
+        #{failCause,jdbcType=VARCHAR},
+      </if>
+      <if test="cipherText != null">
+        #{cipherText,jdbcType=VARCHAR},
+      </if>
+      <if test="pdfUrl != null">
+        #{pdfUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null">
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="paperPdfUrl != null">
+        #{paperPdfUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ofdUrl != null">
+        #{ofdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrls != null">
+        #{imgUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTime != null">
+        #{invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="clerkId != null">
+        #{clerkId,jdbcType=VARCHAR},
+      </if>
+      <if test="clerk != null">
+        #{clerk,jdbcType=VARCHAR},
+      </if>
+      <if test="payee != null">
+        #{payee,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null">
+        #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCode != null">
+        #{checkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null">
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="machineCode != null">
+        #{machineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushMode != null">
+        #{pushMode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionNum != null">
+        #{extensionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalNum != null">
+        #{terminalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyInvoiceFlag != null">
+        #{proxyInvoiceFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="del != null">
+        #{del,jdbcType=BOOLEAN},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        #{deleteUser,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Invoice">
+    update invoice
+    <set>
+      <if test="billNo != null">
+        bill_no = #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null">
+        buyer_name = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerTaxNo != null">
+        buyer_tax_no = #{buyerTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerTel != null">
+        buyer_tel = #{buyerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null">
+        buyer_address = #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAccount != null">
+        buyer_account = #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null">
+        buyer_email = #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null">
+        buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="headType != null">
+        head_type = #{headType,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null">
+        invoice_type = #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceKind != null">
+        invoice_kind = #{invoiceKind,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null">
+        invoice_code = #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNum != null">
+        invoice_num = #{invoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oldInvoiceCode != null">
+        old_invoice_code = #{oldInvoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oldInvoiceNum != null">
+        old_invoice_num = #{oldInvoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null">
+        seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerTaxNo != null">
+        seller_tax_no = #{sellerTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerTel != null">
+        seller_tel = #{sellerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAddress != null">
+        seller_address = #{sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAccount != null">
+        seller_account = #{sellerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="taxAmount != null">
+        tax_amount = #{taxAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxExcludedAmount != null">
+        tax_excluded_amount = #{taxExcludedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="taxIncludedAmount != null">
+        tax_included_amount = #{taxIncludedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productOilFlag != null">
+        product_oil_flag = #{productOilFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="listFlag != null">
+        list_flag = #{listFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="listName != null">
+        list_name = #{listName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null">
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyRemark != null">
+        apply_remark = #{applyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyFlag != null">
+        apply_flag = #{applyFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusMsg != null">
+        status_msg = #{statusMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="failCause != null">
+        fail_cause = #{failCause,jdbcType=VARCHAR},
+      </if>
+      <if test="cipherText != null">
+        cipher_text = #{cipherText,jdbcType=VARCHAR},
+      </if>
+      <if test="pdfUrl != null">
+        pdf_url = #{pdfUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null">
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="paperPdfUrl != null">
+        paper_pdf_url = #{paperPdfUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ofdUrl != null">
+        ofd_url = #{ofdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrls != null">
+        img_urls = #{imgUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTime != null">
+        invoice_time = #{invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="clerkId != null">
+        clerk_id = #{clerkId,jdbcType=VARCHAR},
+      </if>
+      <if test="clerk != null">
+        clerk = #{clerk,jdbcType=VARCHAR},
+      </if>
+      <if test="payee != null">
+        payee = #{payee,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null">
+        checker = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCode != null">
+        check_code = #{checkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null">
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="machineCode != null">
+        machine_code = #{machineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushMode != null">
+        push_mode = #{pushMode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionNum != null">
+        extension_num = #{extensionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalNum != null">
+        terminal_num = #{terminalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyInvoiceFlag != null">
+        proxy_invoice_flag = #{proxyInvoiceFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="del != null">
+        del = #{del,jdbcType=BOOLEAN},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        delete_user = #{deleteUser,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Invoice">
+    update invoice
+    set bill_no = #{billNo,jdbcType=VARCHAR},
+      buyer_name = #{buyerName,jdbcType=VARCHAR},
+      buyer_tax_no = #{buyerTaxNo,jdbcType=VARCHAR},
+      buyer_tel = #{buyerTel,jdbcType=VARCHAR},
+      buyer_address = #{buyerAddress,jdbcType=VARCHAR},
+      buyer_account = #{buyerAccount,jdbcType=VARCHAR},
+      buyer_email = #{buyerEmail,jdbcType=VARCHAR},
+      buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      head_type = #{headType,jdbcType=INTEGER},
+      invoice_type = #{invoiceType,jdbcType=INTEGER},
+      invoice_kind = #{invoiceKind,jdbcType=VARCHAR},
+      invoice_code = #{invoiceCode,jdbcType=VARCHAR},
+      invoice_num = #{invoiceNum,jdbcType=VARCHAR},
+      old_invoice_code = #{oldInvoiceCode,jdbcType=VARCHAR},
+      old_invoice_num = #{oldInvoiceNum,jdbcType=VARCHAR},
+      seller_name = #{sellerName,jdbcType=VARCHAR},
+      seller_tax_no = #{sellerTaxNo,jdbcType=VARCHAR},
+      seller_tel = #{sellerTel,jdbcType=VARCHAR},
+      seller_address = #{sellerAddress,jdbcType=VARCHAR},
+      seller_account = #{sellerAccount,jdbcType=VARCHAR},
+      tax_amount = #{taxAmount,jdbcType=DECIMAL},
+      tax_excluded_amount = #{taxExcludedAmount,jdbcType=DECIMAL},
+      tax_included_amount = #{taxIncludedAmount,jdbcType=DECIMAL},
+      product_oil_flag = #{productOilFlag,jdbcType=BOOLEAN},
+      list_flag = #{listFlag,jdbcType=BOOLEAN},
+      list_name = #{listName,jdbcType=VARCHAR},
+      serial_no = #{serialNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      apply_remark = #{applyRemark,jdbcType=VARCHAR},
+      apply_flag = #{applyFlag,jdbcType=BOOLEAN},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      `status` = #{status,jdbcType=INTEGER},
+      status_msg = #{statusMsg,jdbcType=VARCHAR},
+      fail_cause = #{failCause,jdbcType=VARCHAR},
+      cipher_text = #{cipherText,jdbcType=VARCHAR},
+      pdf_url = #{pdfUrl,jdbcType=VARCHAR},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      paper_pdf_url = #{paperPdfUrl,jdbcType=VARCHAR},
+      ofd_url = #{ofdUrl,jdbcType=VARCHAR},
+      img_urls = #{imgUrls,jdbcType=VARCHAR},
+      invoice_time = #{invoiceTime,jdbcType=TIMESTAMP},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      clerk_id = #{clerkId,jdbcType=VARCHAR},
+      clerk = #{clerk,jdbcType=VARCHAR},
+      payee = #{payee,jdbcType=VARCHAR},
+      checker = #{checker,jdbcType=VARCHAR},
+      check_code = #{checkCode,jdbcType=VARCHAR},
+      qr_code = #{qrCode,jdbcType=VARCHAR},
+      machine_code = #{machineCode,jdbcType=VARCHAR},
+      push_mode = #{pushMode,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      extension_num = #{extensionNum,jdbcType=VARCHAR},
+      terminal_num = #{terminalNum,jdbcType=VARCHAR},
+      proxy_invoice_flag = #{proxyInvoiceFlag,jdbcType=BOOLEAN},
+      del = #{del,jdbcType=BOOLEAN},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=INTEGER},
+      update_user = #{updateUser,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=INTEGER},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP}
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </update>
+</mapper>
